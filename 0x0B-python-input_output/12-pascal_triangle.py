@@ -1,24 +1,21 @@
 #!/usr/bin/python3
-"""
-Defines pasacal triangle that create list of lists
-"""
+"""method for student creation"""
 
 
-def pascal_triangle(n):
-    """
-    defines triangle module
-    """
-    if n <= 0:
-        return []
-    temp = []
-    l = []
-    for i in range(n):
-        row = []
-        for j in range(i + 1):
-            if i == 0 or j == 0 or i == j:
-                row.append(1)
-            else:
-                row.append(l[j] + l[j - 1])
-        l = row
-        temp.append(row)
-    return temp
+class Student:
+    """Student obj, interesting how you don't have to directly
+    test for strings in a loop, python is weird"""
+
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def to_json(self, attrs=None):
+        if attrs is None:
+            return self.__dict__
+        new_dictionary = {}
+        for key, value in self.__dict__.items():
+            if key in attrs:
+                new_dictionary[key] = value
+        return new_dictionary
